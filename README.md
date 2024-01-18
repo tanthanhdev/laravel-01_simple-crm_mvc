@@ -16,7 +16,7 @@ This README would normally document whatever steps are necessary to get your app
 * How to run tests
 
 ## I. Back-End
-- Techs: PHP, Laravel, MySQL
+- Techs: PHP, Laravel 10.x, MySQL
 
 1. Dependencies
 
@@ -34,7 +34,7 @@ This README would normally document whatever steps are necessary to get your app
 ## II. Front-End
 Techs: HTML, CSS, Javascript
 
-Packages: bootstrap 5
+Packages: Bootstrap 5
 
 ### Contribution guidelines ###
 
