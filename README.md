@@ -7,18 +7,24 @@ This README would normally document whatever steps are necessary to get your app
 * Quick summary
 * Version
 
+### Overview ###
+Basically a CRM (Customer Relationship Managment) is a system that manages the organization relationships and interactions with customers, so the main core component is the customer. The customer in the context of the CRM has a lot of statuses and passes through a cycle of stages in other terms called a pipeline until he becomes the organization loyal customer.
+
 ### How do I get set up? ###
 
 * Summary of set up
 * Configuration
 * Dependencies
 * Database configuration
-* How to run tests
+* Run tests
 
 ## I. Back-End
 - Techs: PHP, Laravel 10.x, MySQL
 
 1. Dependencies
+
+- spatia/laravel-permission package.
+- appzcoder/crud-generator package.
 
 2. Configuration
 
@@ -34,7 +40,7 @@ This README would normally document whatever steps are necessary to get your app
 ## II. Front-End
 Techs: HTML, CSS, Javascript
 
-Packages: Bootstrap 5
+Packages: Bootstrap 5, AdminLTE
 
 ### Contribution guidelines ###
 
