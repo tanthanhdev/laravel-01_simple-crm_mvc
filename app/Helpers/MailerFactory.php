@@ -40,4 +40,27 @@ class MailerFactory {
             die("Mailer Factory error: " . $ex->getMessage());
         }
     }
+
+    /**
+     * sendUpdateRoleEmail
+     * @param $subject
+     * @param $user
+     */
+    public function sendUpdateRoleEmail($subject, $user) {
+        try {
+            $this->mailer
+                ->send(
+                    "emails.update_role",
+                    ['user' => $user, 'subject' => $subject],
+                    function($message) use ($subject, $user) {
+                        $message
+                            ->from($this->fromAddress, $this->fromName)
+                            ->to($user->email)
+                            ->subject($subject);
+                    }
+                );
+        } catch (\Exception $ex) {
+            die("Mailer Factory error: " . $ex->getMessage());
+        }
+    }
 }

@@ -19,10 +19,9 @@
 
                         @include('includes.flash_message')
 
-                        <a href="{{ url('/admin/my-profile/edit') }}" title="Edit profile">
-                            <button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button>
-                        </a>
-
+                        @if(user_can('edit_profile'))
+                            <a href="{{ url('/admin/my-profile/edit') }}" title="Edit profile"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                        @endif
                         <br/>
                         <br/>
 

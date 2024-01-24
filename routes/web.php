@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\PermissionsController;
+use App\Http\Controllers\RolesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,12 +29,20 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     });
 
     Route::resources([
-        '/users' => UsersController::class
+        '/users' => UsersController::class,
+        '/permissions' => PermissionsController::class,
+        '/roles' => RolesController::class,
     ]);
 
+    // my profile
     Route::get('/my-profile', [UsersController::class, 'getProfile']);
     Route::get('/my-profile/edit', [UsersController::class, 'getEditProfile']);
     Route::patch('/my-profile/edit', [UsersController::class, 'postEditProfile']);
+
+    // user roles
+    Route::get('/users/role/{id}', [UsersController::class, 'getRole']);
+    Route::put('/users/role/{id}', [UsersController::class, 'updateRole']);
+
 
     Route::get('/forbidden', function() {
         return view('pages.forbidden.forbidden_area');
