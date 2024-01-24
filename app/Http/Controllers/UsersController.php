@@ -10,6 +10,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use Spatie\Permission\Models\Role;
+
 class UsersController extends Controller
 {
     protected $mailer;
@@ -225,6 +227,37 @@ class UsersController extends Controller
         $user->update($requestData);
 
         return redirect('admin/my-profile')->with('flash_message', 'Profile updated!');
+    }
+
+    public function getRole($id) {
+        $user = User::findOrFail($id);
+        $roles = Role::all();
+
+        return view('pages.users.role', compact('user', 'roles'));
+    }
+
+    public function updateRole(Request $request, $id) {
+        $this->validate($request, [
+            'role_id' => 'required'
+        ]);
+
+        $user = User::findOrFail($id);
+        $old_roles = $user->roles()->get();
+        $new_role = Role::findOrFail($request->role_id);
+
+        $user->syncRoles($new_role->name);
+
+        // send role update notification
+        if (
+            getSetting("enable_email_notification") == 1
+            && $old_roles->count() > 0
+            && $old_roles[0]->id != $request->role_id
+        ) {
+            //send notify email
+            $this->mailer->sendUpdateRoleEmail("Your mini crm account have updated role", $user);
+        }
+
+        return redirect('admin/users')->with('flash_message', 'Role updated!');
     }
 
 }
