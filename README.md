@@ -33,9 +33,10 @@ Basically a CRM (Customer Relationship Managment) is a system that manages the o
 4. Load Data Initialization
 
 5. How to run tests
+
 5.1. Run user server locally
 
-- Dashboard: http://localhost:8000/dashboard
+- Dashboard: http://localhost:8000/admin
 
 ## II. Front-End
 Techs: HTML, CSS, Javascript
